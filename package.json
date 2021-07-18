@@ -3,10 +3,13 @@
   "version": "0.1.0",
   "description": "A cool way to log roast information.",
   "private": true,
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/celeryclub/norman-web.git"
   },
   "author": "Steve Davis <steve@celery.club>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
 }
