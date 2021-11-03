@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -15,6 +16,9 @@ module.exports = {
     rules: [{ test: /\.tsx?$/, loader: 'ts-loader' }],
   },
   plugins: [
+    new webpack.DefinePlugin({
+      API_BASE_URL: JSON.stringify(process.env.API_BASE_URL),
+    }),
     new HtmlWebpackPlugin({
       title: 'Norman - A cool way to log roast information',
     }),

@@ -13,8 +13,9 @@
     "node": "16.x"
   },
   "scripts": {
-    "watch": "webpack serve --mode=development",
-    "deploy": "webpack --mode=production && aws s3 cp ./dist s3://norman.celery.club --recursive"
+    "watch:dev": "API_BASE_URL=http://localhost:4000 webpack serve --mode=development",
+    "watch:prod": "API_BASE_URL=https://norman-api.herokuapp.com webpack serve --mode=development",
+    "deploy": "API_BASE_URL=https://norman-api.herokuapp.com webpack --mode=production && aws s3 cp ./dist s3://norman.celery.club --recursive"
   },
   "dependencies": {
     "react": "^17.0.2",

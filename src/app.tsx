@@ -1,7 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Coffees from './routes/Coffees';
 
-const element = <h1>Hello, world</h1>;
+const App = () => {
+  return (
+    <>
+      <h1>Norman</h1>
+      <hr />
+      <Coffees />
+    </>
+  );
+};
+
 const rootNode = document.createElement('div');
 document.body.appendChild(rootNode);
-ReactDOM.render(element, rootNode);
+ReactDOM.render(<App />, rootNode);
