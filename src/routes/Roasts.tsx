@@ -5,8 +5,8 @@ import { Coffee } from '../interfaces/Coffee';
 import { Roast } from '../interfaces/Roast';
 
 const Roasts = () => {
-  const coffeeService = new CoffeeService();
-  const roastService = new RoastService();
+  const coffeeService = CoffeeService.getInstance();
+  const roastService = RoastService.getInstance();
 
   const [coffees, setCoffees] = useState<Coffee[]>([]);
   const [roasts, setRoasts] = useState<Roast[]>([]);

@@ -3,7 +3,7 @@ import CoffeeService from '../services/CoffeeService';
 import { Coffee } from '../interfaces/Coffee';
 
 const Coffees = () => {
-  const coffeeService = new CoffeeService();
+  const coffeeService = CoffeeService.getInstance();
 
   const [coffees, setCoffees] = useState<Coffee[]>([]);
 
