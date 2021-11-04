@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import CoffeeService from '../services/CoffeeService';
-import RoastService from '../services/RoastService';
+import CoffeeProvider from '../providers/CoffeeProvider';
+import RoastProvider from '../providers/RoastProvider';
 import { Coffee } from '../interfaces/Coffee';
 import { Roast } from '../interfaces/Roast';
 
-const Roasts = () => {
-  const coffeeService = CoffeeService.getInstance();
-  const roastService = RoastService.getInstance();
+interface RoastsProps {
+  coffeeProvider: CoffeeProvider;
+  roastProvider: RoastProvider;
+}
 
+const Roasts = ({ coffeeProvider, roastProvider }: RoastsProps) => {
   const [coffees, setCoffees] = useState<Coffee[]>([]);
   const [roasts, setRoasts] = useState<Roast[]>([]);
 
   useEffect(() => {
     Promise.all([
-      coffeeService.getAllCoffees(),
-      roastService.getAllRoasts(),
+      coffeeProvider.getAllCoffees(),
+      roastProvider.getAllRoasts(),
     ]).then((results) => {
       setCoffees(results[0]);
       setRoasts(results[1]);

@@ -1,19 +1,7 @@
 import { Roast } from '../interfaces/Roast';
 
-export default class RoastService {
-  private static roastService: RoastService;
-
+export default class RoastProvider {
   private roastsCache: Roast[];
-
-  private constructor() {}
-
-  public static getInstance(): RoastService {
-    if (!this.roastService) {
-      this.roastService = new RoastService();
-    }
-
-    return this.roastService;
-  }
 
   public async getAllRoasts(): Promise<Roast[]> {
     if (this.roastsCache) {

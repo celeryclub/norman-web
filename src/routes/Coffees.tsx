@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import CoffeeService from '../services/CoffeeService';
+import CoffeeProvider from '../providers/CoffeeProvider';
 import { Coffee } from '../interfaces/Coffee';
 
-const Coffees = () => {
-  const coffeeService = CoffeeService.getInstance();
+interface CoffeesProps {
+  coffeeProvider: CoffeeProvider;
+}
 
+const Coffees = ({ coffeeProvider }: CoffeesProps) => {
   const [coffees, setCoffees] = useState<Coffee[]>([]);
 
   useEffect(() => {
-    coffeeService.getAllCoffees().then((coffees) => {
+    coffeeProvider.getAllCoffees().then((coffees) => {
       setCoffees(coffees);
     });
   }, []);

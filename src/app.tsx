@@ -1,8 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import CoffeeProvider from './providers/CoffeeProvider';
+import RoastProvider from './providers/RoastProvider';
 import Coffees from './routes/Coffees';
 import Roasts from './routes/Roasts';
+
+const coffeeProvider = new CoffeeProvider();
+const roastProvider = new RoastProvider();
 
 const App = () => {
   return (
@@ -11,7 +16,7 @@ const App = () => {
       <div>
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/">Dashboard</Link>
           </li>
           <li>
             <Link to="/coffees">Coffees</Link>
@@ -24,13 +29,16 @@ const App = () => {
       <hr />
       <Switch>
         <Route exact path="/">
-          <p>Home</p>
+          <h2>Dashboard</h2>
         </Route>
         <Route path="/coffees">
-          <Coffees />
+          <Coffees coffeeProvider={coffeeProvider} />
         </Route>
         <Route path="/roasts">
-          <Roasts />
+          <Roasts
+            coffeeProvider={coffeeProvider}
+            roastProvider={roastProvider}
+          />
         </Route>
       </Switch>
     </Router>
