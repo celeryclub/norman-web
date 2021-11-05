@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import CoffeeProvider from './providers/CoffeeProvider';
 import RoastProvider from './providers/RoastProvider';
 import Coffees from './routes/Coffees';
@@ -14,33 +14,31 @@ const App = () => {
     <Router>
       <h1>Norman</h1>
       <div>
-        <ul>
-          <li>
-            <Link to="/">Dashboard</Link>
-          </li>
-          <li>
-            <Link to="/coffees">Coffees</Link>
-          </li>
-          <li>
-            <Link to="/roasts">Roasts</Link>
-          </li>
-        </ul>
+        <nav>
+          <Link to="/">Dashboard</Link>
+          {' | '}
+          <Link to="/coffees">Coffees</Link>
+          {' | '}
+          <Link to="/roasts">Roasts</Link>
+        </nav>
       </div>
       <hr />
-      <Switch>
-        <Route exact path="/">
-          <h2>Dashboard</h2>
-        </Route>
-        <Route path="/coffees">
-          <Coffees coffeeProvider={coffeeProvider} />
-        </Route>
-        <Route path="/roasts">
-          <Roasts
-            coffeeProvider={coffeeProvider}
-            roastProvider={roastProvider}
-          />
-        </Route>
-      </Switch>
+      <Routes>
+        <Route path="/" element={<p>dashboard</p>} />
+        <Route
+          path="/coffees"
+          element={<Coffees coffeeProvider={coffeeProvider} />}
+        />
+        <Route
+          path="/roasts"
+          element={
+            <Roasts
+              coffeeProvider={coffeeProvider}
+              roastProvider={roastProvider}
+            />
+          }
+        />
+      </Routes>
     </Router>
   );
 };
