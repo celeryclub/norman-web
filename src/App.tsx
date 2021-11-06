@@ -6,6 +6,8 @@ import RoastProvider from './providers/RoastProvider';
 import Coffees from './routes/Coffees';
 import Roasts from './routes/Roasts';
 
+import 'normalize.css';
+
 const coffeeProvider = new CoffeeProvider();
 const roastProvider = new RoastProvider();
 

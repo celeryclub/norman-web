@@ -18,6 +18,7 @@
     "deploy": "API_BASE_URL=https://norman-api.herokuapp.com webpack --mode=production && aws s3 cp ./dist s3://norman.celery.club --recursive"
   },
   "dependencies": {
+    "normalize.css": "^8.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router": "^6.0.1",
@@ -28,7 +29,9 @@
     "@types/react-dom": "^17.0.11",
     "@types/react-router": "^5.1.17",
     "@types/react-router-dom": "^5.3.2",
+    "css-loader": "^6.5.1",
     "html-webpack-plugin": "^5.5.0",
+    "style-loader": "^3.3.1",
     "ts-loader": "^9.2.6",
     "typescript": "^4.4.4",
     "webpack": "^5.62.1",
