@@ -46,7 +46,7 @@ const CoffeeList = ({ coffeeProvider }: CoffeeListProps) => {
                 <td>{coffee.regions}</td>
                 <td>{coffee.cultivar}</td>
                 <td>{coffee.process}</td>
-                <td>{coffee.decaf}</td>
+                <td>{coffee.decaf ? 'decaf' : 'caf'}</td>
                 <td>{coffee.grade}</td>
                 <td>{coffee.arrivalDate}</td>
                 <td>

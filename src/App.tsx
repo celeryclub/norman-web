@@ -14,7 +14,7 @@ const roastProvider = new RoastProvider();
 const App = () => {
   return (
     <Router>
-      <h1>Norman</h1>
+      <h1>Norman ☕️</h1>
       <div>
         <nav>
           <Link to="/">Dashboard</Link>
