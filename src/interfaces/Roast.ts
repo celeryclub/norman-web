@@ -15,6 +15,7 @@ export interface Roast {
   ambientTemperature?: number;
   // City, Full City, etc.
   roastLevel?: string;
+  sentiment?: boolean;
   rating?: number;
   notes?: string;
 }

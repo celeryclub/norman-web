@@ -39,6 +39,7 @@ const RoastList = ({ coffeeProvider, roastProvider }: RoastListProps) => {
             <th>First crack end time</th>
             <th>Ambient temperature</th>
             <th>Roast level</th>
+            <th>Sentiment</th>
             <th>Rating</th>
             <th>Notes</th>
           </tr>
@@ -61,6 +62,13 @@ const RoastList = ({ coffeeProvider, roastProvider }: RoastListProps) => {
                 <td>{roast.firstCrackEndTime}</td>
                 <td>{roast.ambientTemperature}</td>
                 <td>{roast.roastLevel}</td>
+                <td>
+                  {roast.sentiment === false
+                    ? '👎'
+                    : roast.sentiment === true
+                    ? '👍'
+                    : '➖'}
+                </td>
                 <td>{roast.rating}</td>
                 <td>{roast.notes}</td>
               </tr>

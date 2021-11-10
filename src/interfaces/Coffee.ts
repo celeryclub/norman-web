@@ -10,6 +10,7 @@ export interface Coffee {
   grade: string;
   arrivalDate: string;
   purchaseUrl: string;
+  sentiment?: boolean;
   rating?: number;
   notes?: string;
 }

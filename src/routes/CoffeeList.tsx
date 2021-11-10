@@ -31,6 +31,7 @@ const CoffeeList = ({ coffeeProvider }: CoffeeListProps) => {
             <th>Grade</th>
             <th>Arrival date</th>
             <th>Purchase URL</th>
+            <th>Sentiment</th>
             <th>Rating</th>
             <th>Notes</th>
           </tr>
@@ -50,6 +51,13 @@ const CoffeeList = ({ coffeeProvider }: CoffeeListProps) => {
                 <td>{coffee.arrivalDate}</td>
                 <td>
                   <a href={coffee.purchaseUrl}>Purchase URL</a>
+                </td>
+                <td>
+                  {coffee.sentiment === false
+                    ? '👎'
+                    : coffee.sentiment === true
+                    ? '👍'
+                    : '➖'}
                 </td>
                 <td>{coffee.rating}</td>
                 <td>{coffee.notes}</td>
