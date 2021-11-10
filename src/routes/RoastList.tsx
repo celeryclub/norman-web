@@ -3,6 +3,7 @@ import CoffeeProvider from '../providers/CoffeeProvider';
 import RoastProvider from '../providers/RoastProvider';
 import { Coffee } from '../interfaces/Coffee';
 import { Roast } from '../interfaces/Roast';
+import Sentiment from '../components/Sentiment';
 
 interface RoastListProps {
   coffeeProvider: CoffeeProvider;
@@ -63,11 +64,7 @@ const RoastList = ({ coffeeProvider, roastProvider }: RoastListProps) => {
                 <td>{roast.ambientTemperature}</td>
                 <td>{roast.roastLevel}</td>
                 <td>
-                  {roast.sentiment === false
-                    ? '👎'
-                    : roast.sentiment === true
-                    ? '👍'
-                    : '➖'}
+                  <Sentiment value={roast.sentiment} />
                 </td>
                 <td>{roast.rating}</td>
                 <td>{roast.notes}</td>

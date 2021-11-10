@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CoffeeProvider from '../providers/CoffeeProvider';
+import Sentiment from '../components/Sentiment';
 import { Coffee } from '../interfaces/Coffee';
 
 interface CoffeeListProps {
@@ -53,11 +54,7 @@ const CoffeeList = ({ coffeeProvider }: CoffeeListProps) => {
                   <a href={coffee.purchaseUrl}>Purchase URL</a>
                 </td>
                 <td>
-                  {coffee.sentiment === false
-                    ? '👎'
-                    : coffee.sentiment === true
-                    ? '👍'
-                    : '➖'}
+                  <Sentiment value={coffee.sentiment} />
                 </td>
                 <td>{coffee.rating}</td>
                 <td>{coffee.notes}</td>
