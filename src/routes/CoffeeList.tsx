@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import CoffeeProvider from '../providers/CoffeeProvider';
 import { Coffee } from '../interfaces/Coffee';
 
-interface CoffeesProps {
+interface CoffeeListProps {
   coffeeProvider: CoffeeProvider;
 }
 
-const Coffees = ({ coffeeProvider }: CoffeesProps) => {
+const CoffeeList = ({ coffeeProvider }: CoffeeListProps) => {
   const [coffees, setCoffees] = useState<Coffee[]>([]);
 
   useEffect(() => {
@@ -62,4 +62,4 @@ const Coffees = ({ coffeeProvider }: CoffeesProps) => {
   );
 };
 
-export default Coffees;
+export default CoffeeList;

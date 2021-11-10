@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import CoffeeProvider from './providers/CoffeeProvider';
 import RoastProvider from './providers/RoastProvider';
-import Coffees from './routes/Coffees';
-import Roasts from './routes/Roasts';
+import CoffeeList from './routes/CoffeeList';
+import RoastList from './routes/RoastList';
 
 import 'normalize.css';
 
@@ -29,12 +29,12 @@ const App = () => {
         <Route path="/" element={<p>dashboard</p>} />
         <Route
           path="/coffees"
-          element={<Coffees coffeeProvider={coffeeProvider} />}
+          element={<CoffeeList coffeeProvider={coffeeProvider} />}
         />
         <Route
           path="/roasts"
           element={
-            <Roasts
+            <RoastList
               coffeeProvider={coffeeProvider}
               roastProvider={roastProvider}
             />

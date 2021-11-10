@@ -4,12 +4,12 @@ import RoastProvider from '../providers/RoastProvider';
 import { Coffee } from '../interfaces/Coffee';
 import { Roast } from '../interfaces/Roast';
 
-interface RoastsProps {
+interface RoastListProps {
   coffeeProvider: CoffeeProvider;
   roastProvider: RoastProvider;
 }
 
-const Roasts = ({ coffeeProvider, roastProvider }: RoastsProps) => {
+const RoastList = ({ coffeeProvider, roastProvider }: RoastListProps) => {
   const [coffees, setCoffees] = useState<Coffee[]>([]);
   const [roasts, setRoasts] = useState<Roast[]>([]);
 
@@ -72,4 +72,4 @@ const Roasts = ({ coffeeProvider, roastProvider }: RoastsProps) => {
   );
 };
 
-export default Roasts;
+export default RoastList;
