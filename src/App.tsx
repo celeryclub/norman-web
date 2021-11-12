@@ -5,13 +5,12 @@ import CoffeeProvider from './providers/CoffeeProvider';
 import RoastProvider from './providers/RoastProvider';
 import CoffeeList from './routes/CoffeeList';
 import RoastList from './routes/RoastList';
-
 import 'normalize.css';
 
 const coffeeProvider = new CoffeeProvider();
 const roastProvider = new RoastProvider();
 
-const App = () => {
+function App() {
   return (
     <Router>
       <h1>Norman ☕️</h1>
@@ -43,7 +42,7 @@ const App = () => {
       </Routes>
     </Router>
   );
-};
+}
 
 const rootNode = document.createElement('div');
 document.body.appendChild(rootNode);

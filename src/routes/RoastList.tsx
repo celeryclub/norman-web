@@ -10,7 +10,7 @@ interface RoastListProps {
   roastProvider: RoastProvider;
 }
 
-const RoastList = ({ coffeeProvider, roastProvider }: RoastListProps) => {
+function RoastList({ coffeeProvider, roastProvider }: RoastListProps) {
   const [coffees, setCoffees] = useState<Coffee[]>([]);
   const [roasts, setRoasts] = useState<Roast[]>([]);
 
@@ -18,11 +18,11 @@ const RoastList = ({ coffeeProvider, roastProvider }: RoastListProps) => {
     Promise.all([
       coffeeProvider.getAllCoffees(),
       roastProvider.getAllRoasts(),
-    ]).then(([coffees, roasts]) => {
-      setCoffees(coffees);
-      setRoasts(roasts);
+    ]).then(([coffeeResults, roastResults]) => {
+      setCoffees(coffeeResults);
+      setRoasts(roastResults);
     });
-  }, []);
+  }, [coffeeProvider, roastProvider]);
 
   return (
     <>
@@ -48,7 +48,7 @@ const RoastList = ({ coffeeProvider, roastProvider }: RoastListProps) => {
         <tbody>
           {roasts.map((roast) => {
             const coffee = coffees.find(
-              (coffee) => coffee.id === roast.coffeeId
+              (coffeeToCheck) => coffeeToCheck.id === roast.coffeeId
             );
 
             return (
@@ -75,6 +75,6 @@ const RoastList = ({ coffeeProvider, roastProvider }: RoastListProps) => {
       </table>
     </>
   );
-};
+}
 
 export default RoastList;
