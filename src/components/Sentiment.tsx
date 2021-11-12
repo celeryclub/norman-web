@@ -4,7 +4,7 @@ interface SentimentProps {
   value?: boolean;
 }
 
-function Sentiment({ value }: SentimentProps) {
+export default function Sentiment({ value }: SentimentProps) {
   if (value === true) {
     return <>👍</>;
   }
@@ -15,5 +15,3 @@ function Sentiment({ value }: SentimentProps) {
 
   return <>➖</>;
 }
-
-export default Sentiment;

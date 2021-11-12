@@ -7,7 +7,7 @@ interface CoffeeListProps {
   coffeeProvider: CoffeeProvider;
 }
 
-function CoffeeList({ coffeeProvider }: CoffeeListProps) {
+export default function CoffeeList({ coffeeProvider }: CoffeeListProps) {
   const [coffees, setCoffees] = useState<Coffee[]>([]);
 
   useEffect(() => {
@@ -66,5 +66,3 @@ function CoffeeList({ coffeeProvider }: CoffeeListProps) {
     </>
   );
 }
-
-export default CoffeeList;

@@ -10,7 +10,10 @@ interface RoastListProps {
   roastProvider: RoastProvider;
 }
 
-function RoastList({ coffeeProvider, roastProvider }: RoastListProps) {
+export default function RoastList({
+  coffeeProvider,
+  roastProvider,
+}: RoastListProps) {
   const [coffees, setCoffees] = useState<Coffee[]>([]);
   const [roasts, setRoasts] = useState<Roast[]>([]);
 
@@ -76,5 +79,3 @@ function RoastList({ coffeeProvider, roastProvider }: RoastListProps) {
     </>
   );
 }
-
-export default RoastList;
