@@ -1,17 +1,17 @@
 import { Coffee } from '../interfaces/Coffee';
 
 export default class CoffeeProvider {
-  private coffeesCache: Coffee[];
+  private allCoffeesCache: Coffee[];
 
   public async getAllCoffees(): Promise<Coffee[]> {
-    if (this.coffeesCache) {
-      return this.coffeesCache;
+    if (this.allCoffeesCache) {
+      return this.allCoffeesCache;
     }
 
     const response = await fetch(`${API_BASE_URL}/coffees`);
     const coffees: Coffee[] = await response.json();
 
-    this.coffeesCache = coffees;
+    this.allCoffeesCache = coffees;
 
     return coffees;
   }

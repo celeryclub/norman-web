@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import CoffeeProvider from './providers/CoffeeProvider';
 import RoastProvider from './providers/RoastProvider';
+import Dashboard from './routes/Dashboard';
 import CoffeeList from './routes/CoffeeList';
 import CoffeeDetails from './routes/CoffeeDetails';
 import RoastList from './routes/RoastList';
@@ -27,7 +28,15 @@ function App() {
       </div>
       <hr />
       <Routes>
-        <Route path="/" element={<p>dashboard</p>} />
+        <Route
+          path="/"
+          element={
+            <Dashboard
+              coffeeProvider={coffeeProvider}
+              roastProvider={roastProvider}
+            />
+          }
+        />
         <Route
           path="/coffees"
           element={<CoffeeList coffeeProvider={coffeeProvider} />}
