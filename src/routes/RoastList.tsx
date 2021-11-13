@@ -41,11 +41,7 @@ export default function RoastList({
             <th>First crack start time</th>
             <th>Total roast time</th>
             <th>First crack end time</th>
-            <th>Ambient temperature</th>
-            <th>Roast level</th>
             <th>Sentiment</th>
-            <th>Rating</th>
-            <th>Notes</th>
           </tr>
         </thead>
         <tbody>
@@ -67,13 +63,9 @@ export default function RoastList({
                 <td>{roast.firstCrackStartTime}</td>
                 <td>{roast.totalRoastTime}</td>
                 <td>{roast.firstCrackEndTime}</td>
-                <td>{roast.ambientTemperature}</td>
-                <td>{roast.roastLevel}</td>
                 <td>
                   <Sentiment value={roast.sentiment} />
                 </td>
-                <td>{roast.rating}</td>
-                <td>{roast.notes}</td>
               </tr>
             );
           })}
