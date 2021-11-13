@@ -29,12 +29,7 @@ export default function CoffeeList({ coffeeProvider }: CoffeeListProps) {
             <th>Cultivar</th>
             <th>Process</th>
             <th>Decaf</th>
-            <th>Grade</th>
-            <th>Arrival date</th>
-            <th>Purchase URL</th>
             <th>Sentiment</th>
-            <th>Rating</th>
-            <th>Notes</th>
           </tr>
         </thead>
         <tbody>
@@ -49,16 +44,9 @@ export default function CoffeeList({ coffeeProvider }: CoffeeListProps) {
                 <td>{coffee.cultivar}</td>
                 <td>{coffee.process}</td>
                 <td>{coffee.decaf ? 'yes' : 'no'}</td>
-                <td>{coffee.grade}</td>
-                <td>{coffee.arrivalDate}</td>
-                <td>
-                  <a href={coffee.purchaseUrl}>Purchase URL</a>
-                </td>
                 <td>
                   <Sentiment value={coffee.sentiment} />
                 </td>
-                <td>{coffee.rating}</td>
-                <td>{coffee.notes}</td>
               </tr>
             );
           })}
