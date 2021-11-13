@@ -5,6 +5,7 @@ import RoastProvider from '../providers/RoastProvider';
 import Sentiment from '../components/Sentiment';
 import { Coffee } from '../interfaces/Coffee';
 import { Roast } from '../interfaces/Roast';
+import Time from '../utils/Time';
 
 interface RoastDetailsProps {
   coffeeProvider: CoffeeProvider;
@@ -44,10 +45,13 @@ export default function RoastDetails({
 
       <p>Batch size: {roast.batchSize} grams</p>
       <p>Roaster settings: {roast.roasterSettings}</p>
-      <p>Preheat time: {roast.preheatTime}</p>
-      <p>First crack start time: {roast.firstCrackStartTime}</p>
-      <p>Total roast time: {roast.totalRoastTime}</p>
-      <p>First crack end time: {roast.firstCrackEndTime}</p>
+      <p>Preheat time: {Time.toString(roast.preheatTime)}</p>
+      <p>First crack start time: {Time.toString(roast.firstCrackStartTime)}</p>
+      <p>Total roast time: {Time.toString(roast.totalRoastTime)}</p>
+      <p>
+        First crack end time:{' '}
+        {roast.firstCrackEndTime && Time.toString(roast.firstCrackEndTime)}
+      </p>
       <p>
         Ambient temperature:{' '}
         {roast.ambientTemperature && `${roast.ambientTemperature} ℉`}

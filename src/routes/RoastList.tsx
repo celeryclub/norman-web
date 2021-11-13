@@ -5,6 +5,7 @@ import RoastProvider from '../providers/RoastProvider';
 import { Coffee } from '../interfaces/Coffee';
 import { Roast } from '../interfaces/Roast';
 import Sentiment from '../components/Sentiment';
+import Time from '../utils/Time';
 
 interface RoastListProps {
   coffeeProvider: CoffeeProvider;
@@ -59,10 +60,13 @@ export default function RoastList({
                 </td>
                 <td>{roast.batchSize} grams</td>
                 <td>{roast.roasterSettings}</td>
-                <td>{roast.preheatTime}</td>
-                <td>{roast.firstCrackStartTime}</td>
-                <td>{roast.totalRoastTime}</td>
-                <td>{roast.firstCrackEndTime}</td>
+                <td>{Time.toString(roast.preheatTime)}</td>
+                <td>{Time.toString(roast.firstCrackStartTime)}</td>
+                <td>{Time.toString(roast.totalRoastTime)}</td>
+                <td>
+                  {roast.firstCrackEndTime &&
+                    Time.toString(roast.firstCrackEndTime)}
+                </td>
                 <td>
                   <Sentiment value={roast.sentiment} />
                 </td>
