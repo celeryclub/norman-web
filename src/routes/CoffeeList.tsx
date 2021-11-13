@@ -19,7 +19,7 @@ export default function CoffeeList({ coffeeProvider }: CoffeeListProps) {
 
   return (
     <>
-      <h2>Coffees</h2>
+      <h2>Coffees ({coffees.length})</h2>
       <table>
         <thead>
           <tr>

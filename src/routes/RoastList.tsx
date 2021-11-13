@@ -31,7 +31,7 @@ export default function RoastList({
 
   return (
     <>
-      <h2>Roasts</h2>
+      <h2>Roasts ({roasts.length})</h2>
       <table>
         <thead>
           <tr>
