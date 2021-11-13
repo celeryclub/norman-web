@@ -15,4 +15,10 @@ export default class CoffeeProvider {
 
     return coffees;
   }
+
+  public async getCoffeeById(id: number): Promise<Coffee> {
+    const coffees: Coffee[] = await this.getAllCoffees();
+
+    return coffees.find((coffee) => coffee.id === id);
+  }
 }

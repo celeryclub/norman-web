@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import CoffeeProvider from '../providers/CoffeeProvider';
 import Sentiment from '../components/Sentiment';
 import { Coffee } from '../interfaces/Coffee';
@@ -22,7 +23,6 @@ export default function CoffeeList({ coffeeProvider }: CoffeeListProps) {
       <table>
         <thead>
           <tr>
-            <th>Id</th>
             <th>Name</th>
             <th>Country</th>
             <th>Regions</th>
@@ -41,13 +41,14 @@ export default function CoffeeList({ coffeeProvider }: CoffeeListProps) {
           {coffees.map((coffee) => {
             return (
               <tr key={coffee.id}>
-                <td>{coffee.id}</td>
-                <td>{coffee.name}</td>
+                <td>
+                  <Link to={`/coffees/${coffee.id}`}>{coffee.name}</Link>
+                </td>
                 <td>{coffee.country}</td>
                 <td>{coffee.regions}</td>
                 <td>{coffee.cultivar}</td>
                 <td>{coffee.process}</td>
-                <td>{coffee.decaf ? 'decaf' : 'caf'}</td>
+                <td>{coffee.decaf ? 'yes' : 'no'}</td>
                 <td>{coffee.grade}</td>
                 <td>{coffee.arrivalDate}</td>
                 <td>

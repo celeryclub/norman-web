@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import CoffeeProvider from './providers/CoffeeProvider';
 import RoastProvider from './providers/RoastProvider';
 import CoffeeList from './routes/CoffeeList';
+import CoffeeDetails from './routes/CoffeeDetails';
 import RoastList from './routes/RoastList';
 import 'normalize.css';
 
@@ -29,6 +30,10 @@ function App() {
         <Route
           path="/coffees"
           element={<CoffeeList coffeeProvider={coffeeProvider} />}
+        />
+        <Route
+          path="/coffees/:id"
+          element={<CoffeeDetails coffeeProvider={coffeeProvider} />}
         />
         <Route
           path="/roasts"
