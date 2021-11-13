@@ -6,6 +6,7 @@ import RoastProvider from './providers/RoastProvider';
 import CoffeeList from './routes/CoffeeList';
 import CoffeeDetails from './routes/CoffeeDetails';
 import RoastList from './routes/RoastList';
+import RoastDetails from './routes/RoastDetails';
 import 'normalize.css';
 
 const coffeeProvider = new CoffeeProvider();
@@ -39,6 +40,15 @@ function App() {
           path="/roasts"
           element={
             <RoastList
+              coffeeProvider={coffeeProvider}
+              roastProvider={roastProvider}
+            />
+          }
+        />
+        <Route
+          path="/roasts/:id"
+          element={
+            <RoastDetails
               coffeeProvider={coffeeProvider}
               roastProvider={roastProvider}
             />

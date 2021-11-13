@@ -15,4 +15,10 @@ export default class RoastProvider {
 
     return roasts;
   }
+
+  public async getRoastById(id: number): Promise<Roast> {
+    const roasts: Roast[] = await this.getAllRoasts();
+
+    return roasts.find((roast) => roast.id === id);
+  }
 }

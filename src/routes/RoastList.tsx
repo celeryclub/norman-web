@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import CoffeeProvider from '../providers/CoffeeProvider';
 import RoastProvider from '../providers/RoastProvider';
 import { Coffee } from '../interfaces/Coffee';
@@ -33,8 +34,7 @@ export default function RoastList({
       <table>
         <thead>
           <tr>
-            <th>Coffee</th>
-            <th>Date</th>
+            <th>Date (Coffee)</th>
             <th>Batch size</th>
             <th>Roaster settings</th>
             <th>Preheat time</th>
@@ -56,8 +56,11 @@ export default function RoastList({
 
             return (
               <tr key={roast.id}>
-                <td>{coffee.name}</td>
-                <td>{roast.date}</td>
+                <td>
+                  <Link to={`/roasts/${roast.id}`}>
+                    {roast.date} ({coffee.name})
+                  </Link>
+                </td>
                 <td>{roast.batchSize} grams</td>
                 <td>{roast.roasterSettings}</td>
                 <td>{roast.preheatTime}</td>

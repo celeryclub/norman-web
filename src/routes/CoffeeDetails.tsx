@@ -37,8 +37,7 @@ export default function CoffeeDetails({ coffeeProvider }: CoffeeDetailsProps) {
         <a href={coffee.purchaseUrl}>Purchase URL</a>
       </p>
       <p>
-        Sentiment:
-        <Sentiment value={coffee.sentiment} />
+        Sentiment: <Sentiment value={coffee.sentiment} />
       </p>
       <p>Rating: {coffee.rating}</p>
       <p>Notes: {coffee.notes}</p>
