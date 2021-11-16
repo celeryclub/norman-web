@@ -1,7 +1,8 @@
+import { Coffee } from './Coffee';
+
 export interface Roast {
   id: number;
-  coffeeId: number;
-  // date: Date;
+  coffee: Coffee;
   date: string;
   // In grams
   batchSize: number;

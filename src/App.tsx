@@ -28,15 +28,7 @@ function App() {
       </div>
       <hr />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <Dashboard
-              coffeeProvider={coffeeProvider}
-              roastProvider={roastProvider}
-            />
-          }
-        />
+        <Route path="/" element={<Dashboard roastProvider={roastProvider} />} />
         <Route
           path="/coffees"
           element={<CoffeeList coffeeProvider={coffeeProvider} />}
@@ -47,21 +39,11 @@ function App() {
         />
         <Route
           path="/roasts"
-          element={
-            <RoastList
-              coffeeProvider={coffeeProvider}
-              roastProvider={roastProvider}
-            />
-          }
+          element={<RoastList roastProvider={roastProvider} />}
         />
         <Route
           path="/roasts/:id"
-          element={
-            <RoastDetails
-              coffeeProvider={coffeeProvider}
-              roastProvider={roastProvider}
-            />
-          }
+          element={<RoastDetails roastProvider={roastProvider} />}
         />
       </Routes>
     </Router>

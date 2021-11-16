@@ -1,33 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import CoffeeProvider from '../providers/CoffeeProvider';
 import RoastProvider from '../providers/RoastProvider';
-import { Coffee } from '../interfaces/Coffee';
 import { Roast } from '../interfaces/Roast';
 import Sentiment from '../components/Sentiment';
 import Time from '../utils/Time';
 
 interface RoastListProps {
-  coffeeProvider: CoffeeProvider;
   roastProvider: RoastProvider;
 }
 
-export default function RoastList({
-  coffeeProvider,
-  roastProvider,
-}: RoastListProps) {
-  const [coffees, setCoffees] = useState<Coffee[]>([]);
+export default function RoastList({ roastProvider }: RoastListProps) {
   const [roasts, setRoasts] = useState<Roast[]>([]);
 
   useEffect(() => {
-    Promise.all([
-      coffeeProvider.getAllCoffees(),
-      roastProvider.getAllRoasts(),
-    ]).then(([coffeeResults, roastResults]) => {
-      setCoffees(coffeeResults);
+    roastProvider.getAllRoasts().then((roastResults) => {
       setRoasts(roastResults);
     });
-  }, [coffeeProvider, roastProvider]);
+  }, [roastProvider]);
 
   return (
     <>
@@ -47,15 +36,11 @@ export default function RoastList({
         </thead>
         <tbody>
           {roasts.map((roast) => {
-            const coffee = coffees.find(
-              (coffeeToCheck) => coffeeToCheck.id === roast.coffeeId
-            );
-
             return (
               <tr key={roast.id}>
                 <td>
                   <Link to={`/roasts/${roast.id}`}>
-                    {roast.date} ({coffee.name})
+                    {roast.date} ({roast.coffee.name})
                   </Link>
                 </td>
                 <td>{roast.batchSize} grams</td>

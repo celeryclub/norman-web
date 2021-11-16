@@ -1,46 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import CoffeeProvider from '../providers/CoffeeProvider';
 import RoastProvider from '../providers/RoastProvider';
 import Sentiment from '../components/Sentiment';
-import { Coffee } from '../interfaces/Coffee';
 import { Roast } from '../interfaces/Roast';
 import Time from '../utils/Time';
 
 interface RoastDetailsProps {
-  coffeeProvider: CoffeeProvider;
   roastProvider: RoastProvider;
 }
 
-export default function RoastDetails({
-  coffeeProvider,
-  roastProvider,
-}: RoastDetailsProps) {
+export default function RoastDetails({ roastProvider }: RoastDetailsProps) {
   const { id } = useParams();
-
-  const [coffee, setCoffee] = useState<Coffee>();
   const [roast, setRoast] = useState<Roast>();
 
   useEffect(() => {
     const idNumber = parseInt(id, 10);
 
-    Promise.all([
-      coffeeProvider.getAllCoffees(),
-      roastProvider.getRoastById(idNumber),
-    ]).then(([coffeeResults, roastResult]) => {
-      const coffeeResult = coffeeResults.find(
-        (coffeeToCheck) => coffeeToCheck.id === roastResult.coffeeId
-      );
-
-      setCoffee(coffeeResult);
+    roastProvider.getRoastById(idNumber).then((roastResult) => {
       setRoast(roastResult);
     });
-  }, [coffeeProvider, roastProvider, id]);
+  }, [roastProvider, id]);
 
-  return roast && coffee ? (
+  return roast ? (
     <>
       <h2>
-        {roast.date} ({coffee.name})
+        {roast.date} ({roast.coffee.name})
       </h2>
 
       <p>Batch size: {roast.batchSize} grams</p>
