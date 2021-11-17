@@ -3,6 +3,8 @@ import { Coffee } from '../interfaces/Coffee';
 export default class CoffeeProvider {
   private allCoffeesCache: Coffee[];
 
+  private coffeeByIdCache: { [id: number]: Coffee } = {};
+
   public async getAllCoffees(): Promise<Coffee[]> {
     if (this.allCoffeesCache) {
       return this.allCoffeesCache;
@@ -17,8 +19,15 @@ export default class CoffeeProvider {
   }
 
   public async getCoffeeById(id: number): Promise<Coffee> {
-    const coffees: Coffee[] = await this.getAllCoffees();
+    if (this.coffeeByIdCache[id]) {
+      return this.coffeeByIdCache[id];
+    }
 
-    return coffees.find((coffee) => coffee.id === id);
+    const response = await fetch(`${API_BASE_URL}/coffees/${id}`);
+    const coffee: Coffee = await response.json();
+
+    this.coffeeByIdCache[id] = coffee;
+
+    return coffee;
   }
 }
