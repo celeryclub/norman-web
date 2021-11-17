@@ -6,44 +6,52 @@ import Time from '../utils/Time';
 
 interface RoastTableProps {
   roasts: Roast[];
+  columns: Array<keyof Roast>;
 }
 
-export default function RoastTable({ roasts }: RoastTableProps) {
+function getColumnTitle(column: keyof Roast): string {
+  const withSpaces = column.replace(/([A-Z])/g, ' $1');
+
+  return withSpaces.charAt(0).toUpperCase() + withSpaces.slice(1).toLowerCase();
+}
+
+function getColumnContent(column: keyof Roast, roast: Roast): React.ReactNode {
+  switch (column) {
+    case 'coffee':
+      return roast.coffee && roast.coffee.name;
+    case 'date':
+      return <Link to={`/roasts/${roast.id}`}>{roast.date}</Link>;
+    case 'batchSize':
+      return `${roast.batchSize} grams`;
+    case 'preheatTime':
+    case 'firstCrackStartTime':
+    case 'totalRoastTime':
+    case 'firstCrackEndTime':
+      return roast[column] && `${Time.toString(roast[column])}`;
+    case 'sentiment':
+      return <Sentiment value={roast.sentiment} />;
+    default:
+      return roast[column];
+  }
+}
+
+export default function RoastTable({ roasts, columns }: RoastTableProps) {
   return (
     <table>
       <thead>
         <tr>
-          <th>Date (Coffee)</th>
-          <th>Batch size</th>
-          <th>Roaster settings</th>
-          <th>Preheat time</th>
-          <th>First crack start time</th>
-          <th>Total roast time</th>
-          <th>First crack end time</th>
-          <th>Sentiment</th>
+          {columns.map((column) => {
+            return <th>{getColumnTitle(column)}</th>;
+          })}
         </tr>
       </thead>
       <tbody>
         {roasts.map((roast) => {
           return (
             <tr key={roast.id}>
-              <td>
-                <Link to={`/roasts/${roast.id}`}>
-                  {roast.date} ({roast.coffee.name})
-                </Link>
-              </td>
-              <td>{roast.batchSize} grams</td>
-              <td>{roast.roasterSettings}</td>
-              <td>{Time.toString(roast.preheatTime)}</td>
-              <td>{Time.toString(roast.firstCrackStartTime)}</td>
-              <td>{Time.toString(roast.totalRoastTime)}</td>
-              <td>
-                {roast.firstCrackEndTime &&
-                  Time.toString(roast.firstCrackEndTime)}
-              </td>
-              <td>
-                <Sentiment value={roast.sentiment} />
-              </td>
+              {columns.map((column) => {
+                return <td>{getColumnContent(column, roast)}</td>;
+              })}
             </tr>
           );
         })}

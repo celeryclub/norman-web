@@ -19,7 +19,20 @@ export default function RoastList({ roastProvider }: RoastListProps) {
   return (
     <>
       <h2>Roasts ({roasts.length})</h2>
-      <RoastTable roasts={roasts} />
+      <RoastTable
+        roasts={roasts}
+        columns={[
+          'date',
+          'coffee',
+          'batchSize',
+          'roasterSettings',
+          'preheatTime',
+          'firstCrackStartTime',
+          'totalRoastTime',
+          'firstCrackEndTime',
+          'sentiment',
+        ]}
+      />
     </>
   );
 }
