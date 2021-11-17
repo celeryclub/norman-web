@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import RoastProvider from '../providers/RoastProvider';
 import Sentiment from '../components/Sentiment';
 import { Roast } from '../interfaces/Roast';
@@ -24,7 +24,8 @@ export default function RoastDetails({ roastProvider }: RoastDetailsProps) {
   return roast ? (
     <>
       <h2>
-        {roast.date} ({roast.coffee.name})
+        {roast.date} (
+        <Link to={`/coffees/${roast.coffee.id}`}>{roast.coffee.name}</Link>)
       </h2>
 
       <p>Batch size: {roast.batchSize} grams</p>
