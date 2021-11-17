@@ -1,3 +1,5 @@
+import { Roast } from './Roast';
+
 export interface Coffee {
   id: number;
   name: string;
@@ -13,4 +15,5 @@ export interface Coffee {
   sentiment?: boolean;
   rating?: number;
   notes?: string;
+  roasts: Roast[];
 }

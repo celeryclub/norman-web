@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import CoffeeProvider from '../providers/CoffeeProvider';
-import Sentiment from '../components/Sentiment';
 import { Coffee } from '../interfaces/Coffee';
+import RoastTable from '../components/RoastTable';
+import Sentiment from '../components/Sentiment';
 
 interface CoffeeDetailsProps {
   coffeeProvider: CoffeeProvider;
@@ -41,6 +42,23 @@ export default function CoffeeDetails({ coffeeProvider }: CoffeeDetailsProps) {
       </p>
       <p>Rating: {coffee.rating}</p>
       <p>Notes: {coffee.notes}</p>
+
+      <h3>Roasts</h3>
+      <RoastTable
+        roasts={coffee.roasts}
+        columns={[
+          'date',
+          'coffee',
+          'batchSize',
+          'roasterSettings',
+          'preheatTime',
+          'firstCrackStartTime',
+          'totalRoastTime',
+          'firstCrackEndTime',
+          'sentiment',
+          'notes',
+        ]}
+      />
     </>
   ) : null;
 }

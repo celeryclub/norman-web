@@ -14,6 +14,7 @@ module.exports = {
     browser: true,
   },
   rules: {
+    'import/no-cycle': 'off',
     'react/function-component-definition': [
       2,
       { namedComponents: 'function-declaration' },
