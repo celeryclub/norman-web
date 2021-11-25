@@ -43,7 +43,7 @@ export default function CoffeeDetails({ coffeeProvider }: CoffeeDetailsProps) {
       <p>Rating: {coffee.rating}</p>
       <p>Notes: {coffee.notes}</p>
 
-      <h3>Roasts</h3>
+      <h3>Roasts ({coffee.roasts.length})</h3>
       <RoastTable
         roasts={coffee.roasts}
         columns={[
