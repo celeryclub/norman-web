@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { ProgressCircle } from '@adobe/react-spectrum';
 import CoffeeProvider from '../providers/CoffeeProvider';
 import Sentiment from '../components/Sentiment';
 import { Coffee } from '../interfaces/Coffee';
@@ -9,15 +10,19 @@ interface CoffeeListProps {
 }
 
 export default function CoffeeList({ coffeeProvider }: CoffeeListProps) {
+  const [isLoading, setIsLoading] = useState(true);
   const [coffees, setCoffees] = useState<Coffee[]>([]);
 
   useEffect(() => {
     coffeeProvider.getAllCoffees().then((coffeeResults) => {
       setCoffees(coffeeResults);
+      setIsLoading(false);
     });
   }, [coffeeProvider]);
 
-  return (
+  return isLoading ? (
+    <ProgressCircle aria-label="Loading…" isIndeterminate />
+  ) : (
     <>
       <h2>Coffees ({coffees.length})</h2>
       <table>

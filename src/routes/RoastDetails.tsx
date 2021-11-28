@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { ProgressCircle } from '@adobe/react-spectrum';
 import RoastProvider from '../providers/RoastProvider';
 import Sentiment from '../components/Sentiment';
 import { Roast } from '../interfaces/Roast';
@@ -11,6 +12,7 @@ interface RoastDetailsProps {
 
 export default function RoastDetails({ roastProvider }: RoastDetailsProps) {
   const { id } = useParams();
+  const [isLoading, setIsLoading] = useState(true);
   const [roast, setRoast] = useState<Roast>();
 
   useEffect(() => {
@@ -18,10 +20,13 @@ export default function RoastDetails({ roastProvider }: RoastDetailsProps) {
 
     roastProvider.getRoastById(idNumber).then((roastResult) => {
       setRoast(roastResult);
+      setIsLoading(false);
     });
   }, [roastProvider, id]);
 
-  return roast ? (
+  return isLoading ? (
+    <ProgressCircle aria-label="Loading…" isIndeterminate />
+  ) : (
     <>
       <h2>
         {roast.date} (
@@ -48,5 +53,5 @@ export default function RoastDetails({ roastProvider }: RoastDetailsProps) {
       <p>Rating: {roast.rating}</p>
       <p>Notes: {roast.notes}</p>
     </>
-  ) : null;
+  );
 }

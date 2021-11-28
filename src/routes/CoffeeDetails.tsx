@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { ProgressCircle } from '@adobe/react-spectrum';
 import CoffeeProvider from '../providers/CoffeeProvider';
 import { Coffee } from '../interfaces/Coffee';
 import RoastTable from '../components/RoastTable';
@@ -11,7 +12,7 @@ interface CoffeeDetailsProps {
 
 export default function CoffeeDetails({ coffeeProvider }: CoffeeDetailsProps) {
   const { id } = useParams();
-
+  const [isLoading, setIsLoading] = useState(true);
   const [coffee, setCoffee] = useState<Coffee>();
 
   useEffect(() => {
@@ -19,10 +20,13 @@ export default function CoffeeDetails({ coffeeProvider }: CoffeeDetailsProps) {
 
     coffeeProvider.getCoffeeById(idNumber).then((coffeeResult) => {
       setCoffee(coffeeResult);
+      setIsLoading(false);
     });
   }, [id, coffeeProvider]);
 
-  return coffee ? (
+  return isLoading ? (
+    <ProgressCircle aria-label="Loading…" isIndeterminate />
+  ) : (
     <>
       <h2>{coffee.name}</h2>
 
@@ -60,5 +64,5 @@ export default function CoffeeDetails({ coffeeProvider }: CoffeeDetailsProps) {
         ]}
       />
     </>
-  ) : null;
+  );
 }

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { ProgressCircle } from '@adobe/react-spectrum';
 import RoastProvider from '../providers/RoastProvider';
 import { Roast } from '../interfaces/Roast';
 import RoastTable from '../components/RoastTable';
@@ -8,6 +9,7 @@ interface DashboardProps {
 }
 
 export default function Dashboard({ roastProvider }: DashboardProps) {
+  const [isLoading, setIsLoading] = useState(true);
   const [cafRoasts, setCafRoasts] = useState<Roast[]>([]);
   const [decafRoasts, setDecafRoasts] = useState<Roast[]>([]);
 
@@ -17,10 +19,13 @@ export default function Dashboard({ roastProvider }: DashboardProps) {
         roastResults;
       setCafRoasts(cafRoastResults);
       setDecafRoasts(decafRoastResults);
+      setIsLoading(false);
     });
   }, [roastProvider]);
 
-  return (
+  return isLoading ? (
+    <ProgressCircle aria-label="Loading…" isIndeterminate />
+  ) : (
     <>
       <h2>Recent roasts</h2>
       <h3>Caf</h3>

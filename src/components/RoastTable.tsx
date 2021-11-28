@@ -41,7 +41,7 @@ export default function RoastTable({ roasts, columns }: RoastTableProps) {
       <thead>
         <tr>
           {columns.map((column) => {
-            return <th>{getColumnTitle(column)}</th>;
+            return <th key={column}>{getColumnTitle(column)}</th>;
           })}
         </tr>
       </thead>
@@ -50,7 +50,7 @@ export default function RoastTable({ roasts, columns }: RoastTableProps) {
           return (
             <tr key={roast.id}>
               {columns.map((column) => {
-                return <td>{getColumnContent(column, roast)}</td>;
+                return <td key={column}>{getColumnContent(column, roast)}</td>;
               })}
             </tr>
           );
