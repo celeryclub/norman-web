@@ -18,7 +18,9 @@ function App() {
   return (
     <Provider theme={defaultTheme}>
       <Router>
-        <h1>Norman ☕️</h1>
+        <Link to="/">
+          <h1>Norman ☕️</h1>
+        </Link>
         <div>
           <nav>
             <Link to="/">Dashboard</Link>
