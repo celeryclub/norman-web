@@ -1,4 +1,4 @@
-import { Coffee } from '../interfaces/Coffee';
+import Coffee from '../models/Coffee';
 
 export default class CoffeeProvider {
   private allCoffeesCache: Coffee[];
@@ -11,7 +11,10 @@ export default class CoffeeProvider {
     }
 
     const response = await fetch(`${API_BASE_URL}/coffees`);
-    const coffees: Coffee[] = await response.json();
+    const jsonData = await response.json();
+    const coffees = jsonData.map((coffeeData) => {
+      return new Coffee(coffeeData);
+    });
 
     this.allCoffeesCache = coffees;
 
@@ -24,7 +27,8 @@ export default class CoffeeProvider {
     }
 
     const response = await fetch(`${API_BASE_URL}/coffees/${id}`);
-    const coffee: Coffee = await response.json();
+    const jsonData = await response.json();
+    const coffee = new Coffee(jsonData);
 
     this.coffeeByIdCache[id] = coffee;
 

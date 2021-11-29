@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ProgressCircle } from '@adobe/react-spectrum';
 import RoastProvider from '../providers/RoastProvider';
-import { Roast } from '../interfaces/Roast';
+import Roast from '../models/Roast';
 import RoastTable from '../components/RoastTable';
 
 interface RoastListProps {

@@ -14,6 +14,8 @@ module.exports = {
     browser: true,
   },
   rules: {
+    '@typescript-eslint/explicit-member-accessibility': ['error'],
+    '@typescript-eslint/member-ordering': ['error'],
     'import/no-cycle': 'off',
     'react/function-component-definition': [
       2,

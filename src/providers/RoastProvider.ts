@@ -1,4 +1,4 @@
-import { Roast } from '../interfaces/Roast';
+import Roast from '../models/Roast';
 
 export default class RoastProvider {
   private allRoastsCache: Roast[];
@@ -14,7 +14,10 @@ export default class RoastProvider {
     }
 
     const response = await fetch(`${API_BASE_URL}/roasts`);
-    const roasts: Roast[] = await response.json();
+    const jsonData = await response.json();
+    const roasts = jsonData.map((roastData) => {
+      return new Roast(roastData);
+    });
 
     this.allRoastsCache = roasts;
 
@@ -30,7 +33,14 @@ export default class RoastProvider {
     }
 
     const response = await fetch(`${API_BASE_URL}/roasts/recent`);
-    const { cafRoasts, decafRoasts } = await response.json();
+    const { cafRoasts: cafRoastsData, decafRoasts: decafRoastsData } =
+      await response.json();
+    const cafRoasts = cafRoastsData.map((cafRoastData) => {
+      return new Roast(cafRoastData);
+    });
+    const decafRoasts = decafRoastsData.map((decafRoastData) => {
+      return new Roast(decafRoastData);
+    });
 
     this.recentRoastsCache = { cafRoasts, decafRoasts };
 

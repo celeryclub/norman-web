@@ -1,8 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Roast } from '../interfaces/Roast';
-import Sentiment from './Sentiment';
-import Time from '../utils/Time';
+import Roast from '../models/Roast';
 
 interface RoastTableProps {
   roasts: Roast[];
@@ -13,26 +10,6 @@ function getColumnTitle(column: keyof Roast): string {
   const withSpaces = column.replace(/([A-Z])/g, ' $1');
 
   return withSpaces.charAt(0).toUpperCase() + withSpaces.slice(1).toLowerCase();
-}
-
-function getColumnContent(column: keyof Roast, roast: Roast): React.ReactNode {
-  switch (column) {
-    case 'coffee':
-      return roast.coffee && roast.coffee.name;
-    case 'date':
-      return <Link to={`/roasts/${roast.id}`}>{roast.date}</Link>;
-    case 'batchSize':
-      return `${roast.batchSize} grams`;
-    case 'preheatTime':
-    case 'firstCrackStartTime':
-    case 'totalRoastTime':
-    case 'firstCrackEndTime':
-      return roast[column] && `${Time.toString(roast[column])}`;
-    case 'sentiment':
-      return <Sentiment value={roast.sentiment} />;
-    default:
-      return roast[column];
-  }
 }
 
 export default function RoastTable({ roasts, columns }: RoastTableProps) {
@@ -50,7 +27,7 @@ export default function RoastTable({ roasts, columns }: RoastTableProps) {
           return (
             <tr key={roast.id}>
               {columns.map((column) => {
-                return <td key={column}>{getColumnContent(column, roast)}</td>;
+                return <td key={column}>{roast.render(column)}</td>;
               })}
             </tr>
           );

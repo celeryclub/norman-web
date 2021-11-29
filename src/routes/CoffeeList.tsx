@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { ProgressCircle } from '@adobe/react-spectrum';
 import CoffeeProvider from '../providers/CoffeeProvider';
-import Sentiment from '../components/Sentiment';
-import { Coffee } from '../interfaces/Coffee';
+import Coffee from '../models/Coffee';
 
 interface CoffeeListProps {
   coffeeProvider: CoffeeProvider;
@@ -25,6 +23,7 @@ export default function CoffeeList({ coffeeProvider }: CoffeeListProps) {
   ) : (
     <>
       <h2>Coffees ({coffees.length})</h2>
+
       <table>
         <thead>
           <tr>
@@ -37,21 +36,18 @@ export default function CoffeeList({ coffeeProvider }: CoffeeListProps) {
             <th>Sentiment</th>
           </tr>
         </thead>
+
         <tbody>
           {coffees.map((coffee) => {
             return (
               <tr key={coffee.id}>
-                <td>
-                  <Link to={`/coffees/${coffee.id}`}>{coffee.name}</Link>
-                </td>
-                <td>{coffee.country}</td>
-                <td>{coffee.regions}</td>
-                <td>{coffee.cultivar}</td>
-                <td>{coffee.process}</td>
-                <td>{coffee.decaf ? 'yes' : 'no'}</td>
-                <td>
-                  <Sentiment value={coffee.sentiment} />
-                </td>
+                <td>{coffee.render('name')}</td>
+                <td>{coffee.render('country')}</td>
+                <td>{coffee.render('regions')}</td>
+                <td>{coffee.render('cultivar')}</td>
+                <td>{coffee.render('process')}</td>
+                <td>{coffee.render('decaf')}</td>
+                <td>{coffee.render('sentiment')}</td>
               </tr>
             );
           })}
