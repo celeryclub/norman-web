@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Coffee from './Coffee';
 import Sentiment from '../components/Sentiment';
-import Time from '../utils/Time';
+import { secondsToString } from '../utils/TimeUtils';
 
 export default class Roast {
   public id: number;
@@ -53,7 +53,7 @@ export default class Roast {
       case 'firstCrackStartTime':
       case 'totalRoastTime':
       case 'firstCrackEndTime':
-        return this[key] && Time.toString(this[key]);
+        return this[key] && secondsToString(this[key]);
       case 'ambientTemperature':
         return this.ambientTemperature && `${this.ambientTemperature} ℉`;
       case 'sentiment':
