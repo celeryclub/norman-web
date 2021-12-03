@@ -23,4 +23,12 @@ module.exports = {
     ],
     'react/require-default-props': 'off',
   },
+  overrides: [
+    {
+      files: ['src/utils/**/*'],
+      rules: {
+        'import/prefer-default-export': 'off',
+      },
+    },
+  ],
 };

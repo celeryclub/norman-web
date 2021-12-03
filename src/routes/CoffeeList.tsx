@@ -1,11 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import { ProgressCircle } from '@adobe/react-spectrum';
+import {
+  ProgressCircle,
+  Cell,
+  Column,
+  Row,
+  TableView,
+  TableBody,
+  TableHeader,
+} from '@adobe/react-spectrum';
 import CoffeeProvider from '../providers/CoffeeProvider';
 import Coffee from '../models/Coffee';
+import { getColumns } from '../utils/TableUtils';
 
 interface CoffeeListProps {
   coffeeProvider: CoffeeProvider;
 }
+
+const columns = getColumns<Coffee>([
+  'name',
+  'country',
+  'regions',
+  'cultivar',
+  'process',
+  'decaf',
+  'sentiment',
+]);
 
 export default function CoffeeList({ coffeeProvider }: CoffeeListProps) {
   const [isLoading, setIsLoading] = useState(true);
@@ -24,35 +43,21 @@ export default function CoffeeList({ coffeeProvider }: CoffeeListProps) {
     <>
       <h2>Coffees ({coffees.length})</h2>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Country</th>
-            <th>Regions</th>
-            <th>Cultivar</th>
-            <th>Process</th>
-            <th>Decaf</th>
-            <th>Sentiment</th>
-          </tr>
-        </thead>
+      <TableView aria-label="Coffee list">
+        <TableHeader columns={columns}>
+          {(column) => <Column key={column.key}>{column.title}</Column>}
+        </TableHeader>
 
-        <tbody>
-          {coffees.map((coffee) => {
-            return (
-              <tr key={coffee.id}>
-                <td>{coffee.render('name')}</td>
-                <td>{coffee.render('country')}</td>
-                <td>{coffee.render('regions')}</td>
-                <td>{coffee.render('cultivar')}</td>
-                <td>{coffee.render('process')}</td>
-                <td>{coffee.render('decaf')}</td>
-                <td>{coffee.render('sentiment')}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+        <TableBody items={coffees}>
+          {(coffee) => (
+            <Row>
+              {(columnKey) => (
+                <Cell>{coffee.render(columnKey as keyof Coffee)}</Cell>
+              )}
+            </Row>
+          )}
+        </TableBody>
+      </TableView>
     </>
   );
 }

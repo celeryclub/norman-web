@@ -42,9 +42,10 @@ export default function CoffeeDetails({ coffeeProvider }: CoffeeDetailsProps) {
       <p>Notes: {coffee.render('notes')}</p>
 
       <h3>Roasts ({coffee.roasts.length})</h3>
+
       <RoastTable
         roasts={coffee.roasts}
-        columns={[
+        columnKeys={[
           'date',
           'coffee',
           'batchSize',

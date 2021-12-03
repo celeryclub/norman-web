@@ -24,9 +24,10 @@ export default function RoastList({ roastProvider }: RoastListProps) {
   ) : (
     <>
       <h2>Roasts ({roasts.length})</h2>
+
       <RoastTable
         roasts={roasts}
-        columns={[
+        columnKeys={[
           'date',
           'coffee',
           'batchSize',

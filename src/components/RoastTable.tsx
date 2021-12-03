@@ -1,38 +1,38 @@
 import React from 'react';
+import {
+  Cell,
+  Column,
+  Row,
+  TableView,
+  TableBody,
+  TableHeader,
+} from '@adobe/react-spectrum';
 import Roast from '../models/Roast';
+import { getColumns } from '../utils/TableUtils';
 
 interface RoastTableProps {
   roasts: Roast[];
-  columns: Array<keyof Roast>;
+  columnKeys: Array<keyof Roast>;
 }
 
-function getColumnTitle(column: keyof Roast): string {
-  const withSpaces = column.replace(/([A-Z])/g, ' $1');
+export default function RoastTable({ roasts, columnKeys }: RoastTableProps) {
+  const columns = getColumns<Roast>(columnKeys);
 
-  return withSpaces.charAt(0).toUpperCase() + withSpaces.slice(1).toLowerCase();
-}
-
-export default function RoastTable({ roasts, columns }: RoastTableProps) {
   return (
-    <table>
-      <thead>
-        <tr>
-          {columns.map((column) => {
-            return <th key={column}>{getColumnTitle(column)}</th>;
-          })}
-        </tr>
-      </thead>
-      <tbody>
-        {roasts.map((roast) => {
-          return (
-            <tr key={roast.id}>
-              {columns.map((column) => {
-                return <td key={column}>{roast.render(column)}</td>;
-              })}
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
+    <TableView aria-label="Roast table">
+      <TableHeader columns={columns}>
+        {(column) => <Column key={column.key}>{column.title}</Column>}
+      </TableHeader>
+
+      <TableBody items={roasts}>
+        {(roast) => (
+          <Row>
+            {(columnKey) => (
+              <Cell>{roast.render(columnKey as keyof Roast)}</Cell>
+            )}
+          </Row>
+        )}
+      </TableBody>
+    </TableView>
   );
 }
