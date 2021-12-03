@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import { Provider, defaultTheme } from '@adobe/react-spectrum';
+import { Provider, defaultTheme, Heading } from '@adobe/react-spectrum';
 import CoffeeProvider from './providers/CoffeeProvider';
 import RoastProvider from './providers/RoastProvider';
 import Dashboard from './routes/Dashboard';
@@ -18,9 +18,9 @@ function App() {
   return (
     <Provider theme={defaultTheme}>
       <Router>
-        <Link to="/">
-          <h1>Norman ☕️</h1>
-        </Link>
+        <Heading level={1}>
+          <Link to="/">Norman ☕️</Link>
+        </Heading>
         <div>
           <nav>
             <Link to="/">Dashboard</Link>

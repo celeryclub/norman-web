@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ProgressCircle } from '@adobe/react-spectrum';
+import { ProgressCircle, Heading } from '@adobe/react-spectrum';
 import RoastProvider from '../providers/RoastProvider';
 import Roast from '../models/Roast';
 
@@ -26,11 +26,10 @@ export default function RoastDetails({ roastProvider }: RoastDetailsProps) {
     <ProgressCircle aria-label="Loading…" isIndeterminate />
   ) : (
     <>
-      <h2>
+      <Heading level={2}>
         {roast.date} (
         <Link to={`/coffees/${roast.coffee.id}`}>{roast.coffee.name}</Link>)
-      </h2>
-
+      </Heading>
       <p>Batch size: {roast.render('batchSize')} grams</p>
       <p>Roaster settings: {roast.render('roasterSettings')}</p>
       <p>Preheat time: {roast.render('preheatTime')}</p>

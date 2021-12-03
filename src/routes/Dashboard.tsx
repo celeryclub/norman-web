@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ProgressCircle } from '@adobe/react-spectrum';
+import { ProgressCircle, Heading } from '@adobe/react-spectrum';
 import RoastProvider from '../providers/RoastProvider';
 import Roast from '../models/Roast';
 import RoastTable from '../components/RoastTable';
@@ -27,13 +27,15 @@ export default function Dashboard({ roastProvider }: DashboardProps) {
     <ProgressCircle aria-label="Loading…" isIndeterminate />
   ) : (
     <>
-      <h2>Recent roasts</h2>
-      <h3>Caf</h3>
+      <Heading level={2}>Recent roasts</Heading>
+
+      <Heading level={3}>Caf</Heading>
       <RoastTable
         roasts={cafRoasts}
         columnKeys={['date', 'coffee', 'batchSize', 'sentiment']}
       />
-      <h3>Decaf</h3>
+
+      <Heading level={3}>Decaf</Heading>
       <RoastTable
         roasts={decafRoasts}
         columnKeys={['date', 'coffee', 'batchSize', 'sentiment']}

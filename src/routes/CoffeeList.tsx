@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {
   ProgressCircle,
+  Heading,
   Cell,
   Column,
   Row,
@@ -41,8 +42,7 @@ export default function CoffeeList({ coffeeProvider }: CoffeeListProps) {
     <ProgressCircle aria-label="Loading…" isIndeterminate />
   ) : (
     <>
-      <h2>Coffees ({coffees.length})</h2>
-
+      <Heading level={2}>Coffees ({coffees.length})</Heading>
       <TableView aria-label="Coffee list">
         <TableHeader columns={columns}>
           {(column) => <Column key={column.key}>{column.title}</Column>}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { ProgressCircle } from '@adobe/react-spectrum';
+import { ProgressCircle, Heading } from '@adobe/react-spectrum';
 import CoffeeProvider from '../providers/CoffeeProvider';
 import Coffee from '../models/Coffee';
 import RoastTable from '../components/RoastTable';
@@ -27,8 +27,7 @@ export default function CoffeeDetails({ coffeeProvider }: CoffeeDetailsProps) {
     <ProgressCircle aria-label="Loading…" isIndeterminate />
   ) : (
     <>
-      <h2>{coffee.name}</h2>
-
+      <Heading level={2}>{coffee.name}</Heading>
       <p>Country: {coffee.render('country')}</p>
       <p>Regions: {coffee.render('regions')}</p>
       <p>Cultivar: {coffee.render('cultivar')}</p>
@@ -41,8 +40,7 @@ export default function CoffeeDetails({ coffeeProvider }: CoffeeDetailsProps) {
       <p>Rating: {coffee.render('rating')}</p>
       <p>Notes: {coffee.render('notes')}</p>
 
-      <h3>Roasts ({coffee.roasts.length})</h3>
-
+      <Heading level={3}>Roasts ({coffee.roasts.length})</Heading>
       <RoastTable
         roasts={coffee.roasts}
         columnKeys={[
