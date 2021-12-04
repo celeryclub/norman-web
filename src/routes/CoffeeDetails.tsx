@@ -45,7 +45,6 @@ export default function CoffeeDetails({ coffeeProvider }: CoffeeDetailsProps) {
         roasts={coffee.roasts}
         columnKeys={[
           'date',
-          'coffee',
           'batchSize',
           'roasterSettings',
           'preheatTime',
