@@ -32,13 +32,13 @@ export default function Dashboard({ roastProvider }: DashboardProps) {
       <Heading level={3}>Caf</Heading>
       <RoastTable
         roasts={cafRoasts}
-        columnKeys={['date', 'coffee', 'batchSize', 'sentiment']}
+        columnKeys={['coffee', 'date', 'batchSize', 'sentiment']}
       />
 
       <Heading level={3}>Decaf</Heading>
       <RoastTable
         roasts={decafRoasts}
-        columnKeys={['date', 'coffee', 'batchSize', 'sentiment']}
+        columnKeys={['coffee', 'date', 'batchSize', 'sentiment']}
       />
     </>
   );

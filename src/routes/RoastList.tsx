@@ -27,8 +27,8 @@ export default function RoastList({ roastProvider }: RoastListProps) {
       <RoastTable
         roasts={roasts}
         columnKeys={[
-          'date',
           'coffee',
+          'date',
           'batchSize',
           'roasterSettings',
           'preheatTime',
