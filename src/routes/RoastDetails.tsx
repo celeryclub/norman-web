@@ -30,7 +30,7 @@ export default function RoastDetails({ roastProvider }: RoastDetailsProps) {
         {roast.date} (
         <Link to={`/coffees/${roast.coffee.id}`}>{roast.coffee.name}</Link>)
       </Heading>
-      <p>Batch size: {roast.render('batchSize')} grams</p>
+      <p>Batch size: {roast.render('batchSize')}</p>
       <p>Roaster settings: {roast.render('roasterSettings')}</p>
       <p>Preheat time: {roast.render('preheatTime')}</p>
       <p>First crack start time: {roast.render('firstCrackStartTime')}</p>
