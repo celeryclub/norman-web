@@ -8,7 +8,9 @@ interface RoastDetailsProps {
   roastProvider: RoastProvider;
 }
 
-export default function RoastDetails({ roastProvider }: RoastDetailsProps) {
+export default function RoastDetails({
+  roastProvider,
+}: RoastDetailsProps): JSX.Element {
   const { id } = useParams();
   const [isLoading, setIsLoading] = useState(true);
   const [roast, setRoast] = useState<Roast>();

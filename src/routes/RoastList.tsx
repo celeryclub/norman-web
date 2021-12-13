@@ -8,7 +8,9 @@ interface RoastListProps {
   roastProvider: RoastProvider;
 }
 
-export default function RoastList({ roastProvider }: RoastListProps) {
+export default function RoastList({
+  roastProvider,
+}: RoastListProps): JSX.Element {
   const [isLoading, setIsLoading] = useState(true);
   const [roasts, setRoasts] = useState<Roast[]>([]);
 

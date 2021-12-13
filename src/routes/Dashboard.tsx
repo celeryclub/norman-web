@@ -8,7 +8,9 @@ interface DashboardProps {
   roastProvider: RoastProvider;
 }
 
-export default function Dashboard({ roastProvider }: DashboardProps) {
+export default function Dashboard({
+  roastProvider,
+}: DashboardProps): JSX.Element {
   const [isLoading, setIsLoading] = useState(true);
   const [cafRoasts, setCafRoasts] = useState<Roast[]>([]);
   const [decafRoasts, setDecafRoasts] = useState<Roast[]>([]);

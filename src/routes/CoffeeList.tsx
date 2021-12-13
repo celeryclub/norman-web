@@ -27,7 +27,9 @@ const columns = getColumns<Coffee>([
   'sentiment',
 ]);
 
-export default function CoffeeList({ coffeeProvider }: CoffeeListProps) {
+export default function CoffeeList({
+  coffeeProvider,
+}: CoffeeListProps): JSX.Element {
   const [isLoading, setIsLoading] = useState(true);
   const [coffees, setCoffees] = useState<Coffee[]>([]);
 
@@ -45,13 +47,15 @@ export default function CoffeeList({ coffeeProvider }: CoffeeListProps) {
       <Heading level={2}>Coffees ({coffees.length})</Heading>
       <TableView aria-label="Coffee list">
         <TableHeader columns={columns}>
-          {(column) => <Column key={column.key}>{column.title}</Column>}
+          {(column): JSX.Element => (
+            <Column key={column.key}>{column.title}</Column>
+          )}
         </TableHeader>
 
         <TableBody items={coffees}>
-          {(coffee) => (
+          {(coffee): JSX.Element => (
             <Row>
-              {(columnKey) => (
+              {(columnKey): JSX.Element => (
                 <Cell>{coffee.render(columnKey as keyof Coffee)}</Cell>
               )}
             </Row>

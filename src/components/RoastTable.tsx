@@ -15,19 +15,24 @@ interface RoastTableProps {
   columnKeys: Array<keyof Roast>;
 }
 
-export default function RoastTable({ roasts, columnKeys }: RoastTableProps) {
+export default function RoastTable({
+  roasts,
+  columnKeys,
+}: RoastTableProps): JSX.Element {
   const columns = getColumns<Roast>(columnKeys);
 
   return (
     <TableView aria-label="Roast table">
       <TableHeader columns={columns}>
-        {(column) => <Column key={column.key}>{column.title}</Column>}
+        {(column): JSX.Element => (
+          <Column key={column.key}>{column.title}</Column>
+        )}
       </TableHeader>
 
       <TableBody items={roasts}>
-        {(roast) => (
+        {(roast): JSX.Element => (
           <Row>
-            {(columnKey) => (
+            {(columnKey): JSX.Element => (
               <Cell>{roast.render(columnKey as keyof Roast)}</Cell>
             )}
           </Row>

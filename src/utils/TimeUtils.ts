@@ -29,7 +29,6 @@ export function secondsFromString(timeString: string): number {
 export function secondsToString(duration: number): string {
   const minutes = Math.floor((duration % 3600) / 60);
   const seconds = Math.floor(duration % 60);
-  console.log({ minutes, seconds });
 
   const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
   const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;

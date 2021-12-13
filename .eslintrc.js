@@ -14,6 +14,7 @@ module.exports = {
     browser: true,
   },
   rules: {
+    '@typescript-eslint/explicit-function-return-type': ['error'],
     '@typescript-eslint/explicit-member-accessibility': ['error'],
     '@typescript-eslint/member-ordering': ['error'],
     'import/no-cycle': 'off',

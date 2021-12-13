@@ -14,7 +14,7 @@ import 'normalize.css';
 const coffeeProvider = new CoffeeProvider();
 const roastProvider = new RoastProvider();
 
-function App() {
+function App(): JSX.Element {
   return (
     <Provider theme={defaultTheme}>
       <Router>

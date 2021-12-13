@@ -4,7 +4,7 @@ interface SentimentProps {
   value?: boolean;
 }
 
-export default function Sentiment({ value }: SentimentProps) {
+export default function Sentiment({ value }: SentimentProps): JSX.Element {
   if (value === true) {
     return <>👍</>;
   }

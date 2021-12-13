@@ -9,7 +9,9 @@ interface CoffeeDetailsProps {
   coffeeProvider: CoffeeProvider;
 }
 
-export default function CoffeeDetails({ coffeeProvider }: CoffeeDetailsProps) {
+export default function CoffeeDetails({
+  coffeeProvider,
+}: CoffeeDetailsProps): JSX.Element {
   const { id } = useParams();
   const [isLoading, setIsLoading] = useState(true);
   const [coffee, setCoffee] = useState<Coffee>();
