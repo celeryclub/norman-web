@@ -9,6 +9,7 @@ import CoffeeList from './routes/CoffeeList';
 import CoffeeDetails from './routes/CoffeeDetails';
 import RoastList from './routes/RoastList';
 import RoastDetails from './routes/RoastDetails';
+import TimeConverter from './components/TimeConverter';
 import 'normalize.css';
 
 const coffeeProvider = new CoffeeProvider();
@@ -21,6 +22,7 @@ function App(): JSX.Element {
         <Heading level={1}>
           <Link to="/">Norman ☕️</Link>
         </Heading>
+        <TimeConverter />
         <div>
           <nav>
             <Link to="/">Dashboard</Link>
